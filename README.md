@@ -219,23 +219,27 @@ docs/
 
 ---
 
-## 9. 路线图概览（Roadmap Summary）
+## 9. Roadmap (演进路线图)
 
-项目遵循循序渐进的演进路径，现已完整闭环交付 **V0 ~ V2 全部 9 个 Phase**，涵盖从工程地基、核心抽象到 ReAct 智能体运行时的完整技术栈：
+AgentFlow 将单智能体 ReAct 运行时的系统化演进严格划分为三大版本与九个渐进阶段：
 
-| 版本里程碑 | 阶段划分 | 状态 | 核心模块 / 路径 | 关键交付与技术亮点 |
-| :--- | :--- | :---: | :--- | :--- |
-| **V0 Foundation**<br>*(工程与设计地基)* | **Phase 0**<br>架构设计与映射门禁 | ✅ 已完成 | `docs/architecture/`<br>`docs/adr/` | 确立分层架构规范，完成底层自研机制到 LCEL 全量映射手册（Migration Map）与 4 篇架构决策记录（ADR） |
-| | **Phase 1**<br>工程分层骨架 | ✅ 已完成 | `app/`, `runtime/`, `llm/`<br>`prompts/`, `tools/`, `memory/` | 建立高内聚低耦合的标准 Python 分层工程拓扑，确立单向无环依赖边界，杜绝循环导入 |
-| | **Phase 2**<br>现代研发基础设施 | ✅ 已完成 | `pyproject.toml`<br>`tests/test_infra.py` | 引入 `uv` 依赖管理、`Ruff` 语法审查、`Black` 代码格式化与 `pytest` 自动化测试门禁基线 |
-| **V1 LangChain Core**<br>*(核心抽象与能力底座)* | **Phase 3**<br>LCEL 核心原语管道 | ✅ 已完成 | `runtime/runnables.py`<br>`llm/client.py` | 基于 `Runnable` 协议提供串行（Sequence）、并行（Parallel）与上下文透传原语，统一 ChatOpenAI 跨厂商接入 |
-| | **Phase 4**<br>结构化提示词与解析 | ✅ 已完成 | `prompts/templates.py`<br>`prompts/parser.py` | 封装 `ChatPromptTemplate` 模板工厂与 `MessagesPlaceholder` 历史占位，集成 Str / Json / Pydantic 强类型反序列化解析 |
-| | **Phase 5**<br>标准化工具调用闭环 | ✅ 已完成 | `tools/calculator.py`<br>`runtime/tool_caller.py` | 基于 AST 抽象语法树的安全数学计算器与系统探针，提供模型工具绑定、批量执行与 `ToolMessage(status="error")` 容错包装 |
-| **V2 Agent Capability**<br>*(运行时调度与 ReAct 闭环)* | **Phase 6**<br>低延迟端到端流式响应 | ✅ 已完成 | `runtime/streaming.py`<br>`app/renderer.py` | 支持 `stream_text` 文本块流与 `astream_events` 原生事件派发，基于 Rich 实现终端打字机流式渲染引擎 `StepRenderer` |
-| | **Phase 7**<br>状态外置与持久化会话 | ✅ 已完成 | `memory/history.py`<br>`runtime/stateful_chain.py` | 内存滑动窗口截断（Windowed）、本地 JSON 文件持久化 Store（FileHistoryStore），结合 `RunnableWithMessageHistory` 实现多会话隔离 |
-| | **Phase 8**<br>MiniAgent 闭环与 CLI | ✅ 已完成 | `runtime/mini_agent.py`<br>`app/cli.py` | 纯 LCEL 驱动的 ReAct 决策循环、DeepSeek `reasoning_content` 与前置 Thought 双模态捕获、流式缓冲判别、max_iterations 防死锁熔断、Typer CLI 终端交互 |
+### Completed (已完成)
 
-> 💡 **测试门禁验证**：全量 **43 项自动化单元与集成测试 100% 通过**。各阶段详细实施记录与架构设计请参阅 [研发路线图](file:///d:/myProject/AgentFlow/docs/roadmap/roadmap.md)。
+#### V0 Foundation (工程与设计地基)
+- ✅ **Phase 0: Design Gate**: 架构全景设计、底层自研机制到 LCEL 全量映射手册（Migration Map）与 4 篇核心 ADR 架构决策。
+- ✅ **Phase 1: Project Skeleton**: 现代化分层工程骨架（`app/`, `runtime/`, `llm/`, `prompts/`, `tools/`, `memory/`）与单向无环依赖边界隔离。
+- ✅ **Phase 2: Dev Infrastructure**: 基于 `uv` 的现代工具链、`Ruff` 代码检查、`Black` 格式化与 `pytest` 自动化测试基础设施。
+
+#### V1 LangChain Core (核心抽象迁移)
+- ✅ **Phase 3: Runnable Foundation**: 统一 `Runnable` 协议组合原语（串行、并行、上下文传递）与 ChatOpenAI 跨厂商统一适配器。
+- ✅ **Phase 4: Prompt Engineering**: `ChatPromptTemplate` 结构化提示词工厂、`MessagesPlaceholder` 历史占位与 Pydantic 强类型输出解析器。
+- ✅ **Phase 5: Tool Calling**: 基于 AST 抽象语法树的安全数学计算器与系统探针、模型工具绑定、批量调度执行与 `ToolMessage` 容错闭环。
+
+#### V2 Agent Capability (运行时高阶能力)
+- ✅ **Phase 6: Streaming**: 端到端低延迟流式响应、`astream_events` 原生事件流派发与基于 Rich 的 `StepRenderer` 终端打字机渲染引擎。
+- ✅ **Phase 7: Memory**: 内存滑动窗口截断（`WindowedChatMessageHistory`）、本地 JSON 文件持久化 Store（`FileHistoryStore`）与 `RunnableWithMessageHistory` 会话隔离。
+- ✅ **Phase 8: Mini Agent**: 纯 LCEL 驱动的 ReAct 决策循环闭环、DeepSeek `reasoning_content` 与前置 Thought 双模态捕获、流式缓冲自适应判别与防死锁熔断。
+- ✅ **Application Layer: CLI**: 基于 Typer 与 Rich 构建的完整交互式终端 REPL 会话（`chat`）、单次任务推演（`ask`）与工具探查（`tools`）。
 
 ---
 

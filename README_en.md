@@ -217,7 +217,7 @@ docs/
 │   ├── ADR-003-no-langgraph-yet.md   # ADR-003: Why defer LangGraph to subsequent phases
 │   └── ADR-004-session-file-memory.md# ADR-004: Why use local JSON file storage for memory
 └── roadmap/                          # Roadmap & evolutionary milestones
-    └── roadmap.md                    # Detailed deliverables for Phase 0-8 & V3 planning
+    └── roadmap.md                    # Detailed deliverables for Phase 0-8 roadmap
 ```
 
 ---
@@ -229,7 +229,7 @@ docs/
 | **V0 Foundation (Phase 0~2)** | ✅ **Completed** | Architecture design gate, modular skeleton, modern toolchain (uv, ruff, pytest) |
 | **V1 LangChain Core (Phase 3~5)** | ✅ **Completed** | LCEL primitives, structured Prompt/Parser, BaseTool dynamic binding, safe AST calculator |
 | **V2 Agent Capability (Phase 6~8)** | ✅ **Completed** | Typewriter streaming, session file persistence, MiniAgent ReAct loop, Typer CLI |
-| **V3 StateGraph & Scaling (Phase 9~13)** | 📋 **Planned** | LangGraph StateGraph, Multi-Agent collaboration, RAG retrieval, MCP integration, FastAPI service |
+
 
 For detailed phased roadmaps and quality gates, please refer to the [Roadmap](file:///d:/myProject/AgentFlow/docs/roadmap/roadmap.md).
 

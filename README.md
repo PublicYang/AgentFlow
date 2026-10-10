@@ -214,7 +214,7 @@ docs/
 │   ├── ADR-003-no-langgraph-yet.md   # ADR-003: 为什么暂不引入 LangGraph
 │   └── ADR-004-session-file-memory.md# ADR-004: 为什么单智能体阶段采用本地 JSON 文件记忆
 └── roadmap/                          # 演进与研发规划
-    └── roadmap.md                    # 9 阶段已交付详情与后续 V3 路线图
+    └── roadmap.md                    # 9 阶段已交付详情与研发路线图
 ```
 
 ---
@@ -226,9 +226,9 @@ docs/
 | **V0 Foundation (Phase 0~2)** | ✅ **已完成** | 架构设计门禁、工程分层骨架、现代工具链（uv, ruff, pytest） |
 | **V1 LangChain Core (Phase 3~5)** | ✅ **已完成** | LCEL 核心原语、结构化 Prompt/Parser、BaseTool 动态绑定与 AST 计算器 |
 | **V2 Agent Capability (Phase 6~8)** | ✅ **已完成** | 打字机流式响应、文件会话记忆隔离、MiniAgent ReAct 闭环与 CLI 交互 |
-| **V3 StateGraph & Scaling (Phase 9~13)** | 📋 **规划中** | LangGraph 状态图集成、多智能体协作（Multi-Agent）、RAG 知识检索、MCP 协议、FastAPI 服务化 |
 
-详细实施规划与各阶段质量门禁请参考 [研发路线图](file:///d:/myProject/AgentFlow/docs/roadmap/roadmap.md)。
+
+各阶段详细实施记录与质量门禁请参考 [研发路线图](file:///d:/myProject/AgentFlow/docs/roadmap/roadmap.md)。
 
 ---
 

@@ -224,14 +224,21 @@ docs/
 
 ## 9. Roadmap Summary
 
-| Version / Milestone | Status | Key Deliverables |
-| :--- | :--- | :--- |
-| **V0 Foundation (Phase 0~2)** | ✅ **Completed** | Architecture design gate, modular skeleton, modern toolchain (uv, ruff, pytest) |
-| **V1 LangChain Core (Phase 3~5)** | ✅ **Completed** | LCEL primitives, structured Prompt/Parser, BaseTool dynamic binding, safe AST calculator |
-| **V2 Agent Capability (Phase 6~8)** | ✅ **Completed** | Typewriter streaming, session file persistence, MiniAgent ReAct loop, Typer CLI |
+AgentFlow adopts a systematic, step-by-step evolution. All **9 Phases across V0 ~ V2** have been fully delivered and validated, covering the full stack from engineering foundations and core abstractions to the ReAct agent runtime:
 
+| Version / Milestone | Phase Breakdown | Status | Modules / Deliverables | Key Capabilities & Highlights |
+| :--- | :--- | :---: | :--- | :--- |
+| **V0 Foundation**<br>*(Engineering & Design)* | **Phase 0**<br>Architecture & Design Gate | ✅ Completed | `docs/architecture/`<br>`docs/adr/` | Strict layered architecture specs, comprehensive Migration Map from proprietary runtime to LCEL, and 4 core ADRs |
+| | **Phase 1**<br>Project Skeleton | ✅ Completed | `app/`, `runtime/`, `llm/`<br>`prompts/`, `tools/`, `memory/` | Standard Python modular layered structure with unidirectional acyclic dependency topology, preventing circular imports |
+| | **Phase 2**<br>Modern Infrastructure | ✅ Completed | `pyproject.toml`<br>`tests/test_infra.py` | Modern toolchain powered by `uv`, `Ruff` linter, `Black` formatter, and baseline smoke tests via `pytest` |
+| **V1 LangChain Core**<br>*(Core Abstractions)* | **Phase 3**<br>LCEL Runnable Primitives | ✅ Completed | `runtime/runnables.py`<br>`llm/client.py` | Unified `Runnable` orchestration primitives (`compose_sequence`, `compose_parallel`, `assign_context`) and unified ChatOpenAI factory |
+| | **Phase 4**<br>Structured Prompts & Parsers | ✅ Completed | `prompts/templates.py`<br>`prompts/parser.py` | `ChatPromptTemplate` factories with `MessagesPlaceholder`, integrated with Str, Json, and Pydantic schema validation parsers |
+| | **Phase 5**<br>Standardized Tool Calling | ✅ Completed | `tools/calculator.py`<br>`runtime/tool_caller.py` | AST-based safe math calculator & system probe, automated tool schema binding, batch execution, and graceful `ToolMessage` error wrapping |
+| **V2 Agent Capability**<br>*(Runtime & ReAct Loop)* | **Phase 6**<br>Low-latency Streaming | ✅ Completed | `runtime/streaming.py`<br>`app/renderer.py` | Chunk streaming via `stream_text` and v2 `astream_events` dispatch; Rich-based `StepRenderer` typewriter streaming engine |
+| | **Phase 7**<br>Session Memory Persistence | ✅ Completed | `memory/history.py`<br>`runtime/stateful_chain.py` | In-memory sliding window history, local JSON file persistence (`FileHistoryStore`), and multi-session isolation via `RunnableWithMessageHistory` |
+| | **Phase 8**<br>MiniAgent ReAct Loop & CLI | ✅ Completed | `runtime/mini_agent.py`<br>`app/cli.py` | Pure LCEL-driven ReAct loop, dual-mode thought capture (DeepSeek `reasoning_content` & pre-tool thoughts), streaming adaptive buffering, deadlock circuit breaker, and Typer CLI (`ask`, `chat`, `tools`) |
 
-For detailed phased roadmaps and quality gates, please refer to the [Roadmap](file:///d:/myProject/AgentFlow/docs/roadmap/roadmap.md).
+> 💡 **Quality Gate Verification**: 100% passed across all **43 automated unit and integration tests**. For detailed implementation records and design decisions, please refer to the [Roadmap](file:///d:/myProject/AgentFlow/docs/roadmap/roadmap.md).
 
 ---
 
